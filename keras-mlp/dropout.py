@@ -12,7 +12,7 @@ run = wandb.init()
 config = run.config
 config.optimizer = "adam"
 config.epochs = 50
-config.dropout = 0.4
+config.dropout = 0.4 #zero out 40 percent of the inputs per batch/layer
 config.hidden_nodes = 100
 
 # load data

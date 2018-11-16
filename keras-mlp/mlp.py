@@ -14,7 +14,7 @@ config = run.config
 config.optimizer = "adam"
 config.epochs = 50
 config.dropout = 10
-config.hidden_nodes = 100
+config.hidden_nodes = 10
 
 # load data
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
@@ -32,13 +32,15 @@ y_test = np_utils.to_categorical(y_test)
 labels = range(10)
 
 num_classes = y_train.shape[1]
+#input shape only needs to be set at the top of code, gets carried through down code.
 
 
 # create model
 model = Sequential()
 model.add(Flatten(input_shape=(img_width, img_height)))
 model.add(Dense(config.hidden_nodes, activation='relu'))
-model.add(Dense(num_classes, activation='softmax'))
+model.add(Dense(config.hidden_nodes, activation='relu'))
+model.add(Dense(num_classes, activation='softmax')) #dense = number of perceptrons, Softmax makes sure the sum of all probabilities add up to 1.
 model.compile(loss='categorical_crossentropy', optimizer=config.optimizer,
               metrics=['accuracy'])
 
