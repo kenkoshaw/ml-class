@@ -31,3 +31,7 @@ model.compile(loss='categorical_crossentropy', optimizer='adam',
 # Fit the model
 model.fit(X_train, y_train, epochs=10, validation_data=(X_test, y_test),
           callbacks=[WandbCallback(data_type="image", labels=labels, save_model=False)])
+
+#val_accuracy = accuracy on test data set
+#accuracy = accuracy on train data set
+#if acc > val_acc then it is doing better on the training set than on test set, overfitting.
