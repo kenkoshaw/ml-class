@@ -25,11 +25,11 @@ num_classes = y_train.shape[1]
 # create model
 model = Sequential()
 model.add(Flatten(input_shape=(img_width, img_height)))
-model.add(Dense(num_classes))
+model.add(Dense(num_classes, activation='sigmoid'))
 model.compile(loss='mse', optimizer='adam',
               metrics=['accuracy'])
 
 # Fit the model
-model.fit(X_train, y_train, epochs=10, validation_data=(X_test, y_test),
+model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test),
           callbacks=[WandbCallback(data_type="image", labels=labels, save_model=False)])
 model.save('model.h5')
